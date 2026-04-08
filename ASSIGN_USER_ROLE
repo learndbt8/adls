@@ -1,0 +1,38 @@
+CREATE OR REPLACE PROCEDURE ADMIN.ADMIN_ACTIVITIES.ASSIGN_USER_ROLE("USER_NAME" VARCHAR, "ROLE_TO_ASSIGN" VARCHAR)
+RETURNS VARCHAR
+LANGUAGE JAVASCRIPT
+EXECUTE AS OWNER
+AS '
+    var userName = USER_NAME;
+    var role = ROLE_TO_ASSIGN;
+    var result = `` ;
+      
+       // Create SQL statement to drop user
+       var grantRole = `GRANT ROLE IDENTIFIER( ''` + role + `'') TO USER IDENTIFIER( ''` + userName + `'' )`;
+       var grantRoleCommand = snowflake.createStatement( {sqlText: grantRole} );
+       
+       var currUser = `SELECT CURRENT_USER() `;
+       var currUserCommand = snowflake.createStatement( {sqlText: currUser} );
+      
+       // Executed disable user command
+       try {
+        result = grantRoleCommand.execute();
+        resultcr = currUserCommand.execute();
+        resultcr.next();
+
+        var alertUser = `CALL SYSTEM$SEND_EMAIL( ''DATA_LOAD_UPDATE'', ''datateam@integrate.com'', ''NOTIFICATION: USER ROLE UPDATE IN SNOWFLAKE.'', ''Hi Team, \n \n Please be informed that ` + userName + ` is assined the role `+ role +` by ` + resultcr.getColumnValue(1)+ `.\n \nIf any issue please reach the snowflake Admin.\n \nThanks,\nData Team'' );`;
+    var alertUserCommand = snowflake.createStatement( {sqlText: alertUser} );
+    alertUserCommand.execute();
+    
+        return userName + ` given the role ` + role  +` successfully by ` + resultcr.getColumnValue(1);
+        
+        }
+       catch (err) {
+        return `Unable to aggin role ` + role  +` the user ` + userName + `. Please reachout to ACCOUNTADMIN.`;
+        }
+  ';
+
+
+
+-- Sample call statement
+  CALL ADMIN.ADMIN_ACTIVITIES.ASSIGN_USER_ROLE('"TEST_USER"', '"READER"');
