@@ -5,6 +5,11 @@
 			"referenceName": "MySql1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"table": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "MySqlTable",
 		"schema": []
