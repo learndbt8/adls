@@ -15,10 +15,27 @@
 					"variableName": "length",
 					"value": "5"
 				}
+			},
+			{
+				"name": "breadth",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "breadth",
+					"value": "4"
+				}
 			}
 		],
 		"variables": {
 			"length": {
+				"type": "String"
+			},
+			"breadth": {
 				"type": "String"
 			}
 		},
