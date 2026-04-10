@@ -13,7 +13,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "length",
-					"value": "5"
+					"value": "6"
 				}
 			},
 			{
@@ -27,16 +27,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "breadth",
-					"value": "4"
+					"value": "8"
 				}
 			}
 		],
 		"variables": {
 			"length": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "5"
 			},
 			"breadth": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "4"
 			}
 		},
 		"annotations": []
