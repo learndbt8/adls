@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "addf11"
+		},
+		"MySql1_password": {
+			"value": ""
+		},
+		"Snowflake1_password": {
+			"value": ""
+		},
+		"MySql1_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"MySql1_properties_typeProperties_database": {
+			"value": "sales"
+		},
+		"MySql1_properties_typeProperties_username": {
+			"value": "root"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"value": "adls"
+		},
+		"Snowflake1_properties_typeProperties_role": {
+			"value": "ACCOUNTADMIN"
+		},
+		"Snowflake1_properties_typeProperties_host": {
+			"value": "NFVSUKW-OI94186.snowflakecomputing.com"
+		}
+	}
+}
